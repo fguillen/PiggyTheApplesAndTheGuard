@@ -13,9 +13,27 @@ _global_script_classes=[ {
 "class": "Apple",
 "language": "GDScript",
 "path": "res://Apple.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Guard",
+"language": "GDScript",
+"path": "res://Guard.gd"
+}, {
+"base": "Area2D",
+"class": "Pig",
+"language": "GDScript",
+"path": "res://Pig.gd"
+}, {
+"base": "Area2D",
+"class": "WorldLimit",
+"language": "GDScript",
+"path": "res://WorldLimit.gd"
 } ]
 _global_script_class_icons={
-"Apple": ""
+"Apple": "",
+"Guard": "",
+"Pig": "",
+"WorldLimit": ""
 }
 
 [application]
@@ -59,6 +77,12 @@ texture={
 "stream": false,
 "svg/scale": 1.0
 }
+
+[layer_names]
+
+2d_render/layer_1="World"
+2d_render/layer_2="Characters"
+2d_render/layer_3="Apples"
 
 [physics]
 

@@ -1,4 +1,5 @@
 extends Area2D
+class_name Pig
 
 export(int) var speed = 200
 
@@ -41,6 +42,6 @@ func _on_Pig_area_entered(area:Area2D):
 func collect_apple(apple):
 	apple.queue_free()
 
-func move(direction, delta):
+func move(_direction, delta):
 	running = true
-	position += direction * speed * delta
+	position += _direction * speed * delta

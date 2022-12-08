@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Pig.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Apple.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Treee.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Guard.tscn" type="PackedScene" id=4]
+[ext_resource path="res://WorldLimit.tscn" type="PackedScene" id=5]
 
 [node name="Word" type="Node"]
 
@@ -28,3 +30,20 @@ position = Vector2( 144, 88 )
 
 [node name="Treee" parent="." instance=ExtResource( 3 )]
 position = Vector2( 176, 72 )
+
+[node name="Guard" parent="." instance=ExtResource( 4 )]
+position = Vector2( 184, 136 )
+
+[node name="WorldLimit" parent="." instance=ExtResource( 5 )]
+position = Vector2( 16, -56 )
+
+[node name="WorldLimit2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 16, 360 )
+
+[node name="WorldLimit3" parent="." instance=ExtResource( 5 )]
+position = Vector2( -88, -40 )
+rotation = 1.5708
+
+[node name="WorldLimit4" parent="." instance=ExtResource( 5 )]
+position = Vector2( 360, -48 )
+rotation = 1.5708

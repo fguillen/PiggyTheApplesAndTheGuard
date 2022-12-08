@@ -40,6 +40,8 @@ tracks/0/keys = {
 }
 
 [node name="Pig" type="Area2D"]
+collision_layer = 2
+collision_mask = 5
 script = ExtResource( 2 )
 speed = 100
 
