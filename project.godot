@@ -28,12 +28,18 @@ _global_script_classes=[ {
 "class": "WorldLimit",
 "language": "GDScript",
 "path": "res://WorldLimit.gd"
+}, {
+"base": "Area2D",
+"class": "WorldTree",
+"language": "GDScript",
+"path": "res://Tree.gd"
 } ]
 _global_script_class_icons={
 "Apple": "",
 "Guard": "",
 "Pig": "",
-"WorldLimit": ""
+"WorldLimit": "",
+"WorldTree": ""
 }
 
 [application]

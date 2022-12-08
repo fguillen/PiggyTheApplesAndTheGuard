@@ -57,4 +57,12 @@ shape = SubResource( 1 )
 anims/Idle = SubResource( 2 )
 anims/Run = SubResource( 4 )
 
+[node name="Label" type="Label" parent="."]
+margin_left = -13.0
+margin_top = -19.0
+margin_right = 27.0
+margin_bottom = -5.0
+text = "hello"
+
 [connection signal="area_entered" from="." to="." method="_on_Pig_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_Pig_area_exited"]
