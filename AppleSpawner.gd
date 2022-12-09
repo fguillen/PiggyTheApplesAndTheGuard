@@ -22,6 +22,6 @@ func _on_Timer_timeout():
 
 func rand_position():
 	return Vector2(
-		rng.randi_range(0, screen_size.x),
-		rng.randi_range(0, screen_size.y)
+		rng.randi_range(40, screen_size.x - 40),
+		rng.randi_range(40, screen_size.y - 40)
 	)
