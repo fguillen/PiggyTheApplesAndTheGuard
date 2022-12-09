@@ -37,18 +37,18 @@ position = Vector2( 56, 128 )
 position = Vector2( 88, 56 )
 
 [node name="Guard" parent="." instance=ExtResource( 4 )]
-position = Vector2( 184, 136 )
+position = Vector2( 96, 88 )
 
 [node name="WorldLimit" parent="." instance=ExtResource( 5 )]
-position = Vector2( 16, -56 )
+position = Vector2( 8, -16 )
 
 [node name="WorldLimit2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 16, 360 )
+position = Vector2( 8, 296 )
 
 [node name="WorldLimit3" parent="." instance=ExtResource( 5 )]
-position = Vector2( -88, -40 )
+position = Vector2( -80, -40 )
 rotation = 1.5708
 
 [node name="WorldLimit4" parent="." instance=ExtResource( 5 )]
-position = Vector2( 360, -48 )
+position = Vector2( 328, -40 )
 rotation = 1.5708

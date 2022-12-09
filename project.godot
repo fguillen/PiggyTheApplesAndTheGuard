@@ -14,7 +14,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Apple.gd"
 }, {
-"base": "KinematicBody2D",
+"base": "Node2D",
 "class": "Guard",
 "language": "GDScript",
 "path": "res://Guard.gd"

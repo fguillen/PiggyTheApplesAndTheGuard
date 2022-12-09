@@ -8,9 +8,10 @@ extents = Vector2( 216, 10 )
 [node name="WorldLimit" type="Area2D"]
 collision_mask = 2
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 160, -40 )
 shape = SubResource( 1 )
-
-[connection signal="body_entered" from="." to="." method="_on_WorldLimit_body_entered"]

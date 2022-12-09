@@ -14,7 +14,6 @@ onready var timerEating: = $TimerEating
 const TextureVisible = preload("res://Pig.png")
 const TextureHidden = preload("res://Pig_hidden.png")
 
-var running = false
 var hidden = false
 var size = 1
 var appleEating = null
@@ -33,7 +32,6 @@ func _ready():
 	sprite.texture = TextureVisible
 
 func _process(delta):
-	running = false
 	label.text = State.keys()[state]
 	var direction = get_direction()
 
@@ -63,7 +61,6 @@ func set_hidden(value):
 		sprite.texture = TextureVisible
 
 func move(_direction, delta):
-	running = true
 	position += _direction * speed * delta
 
 
