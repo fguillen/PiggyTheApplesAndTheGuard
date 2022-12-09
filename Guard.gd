@@ -8,6 +8,7 @@ export(float) var change_direction_max_seconds = 3.0
 
 var direction = Vector2.ZERO
 var velocity = Vector2.ZERO
+var rng = RandomNumberGenerator.new()
 
 var DIRECTIONS = [
 	Vector2(0, 0),
@@ -18,6 +19,7 @@ var DIRECTIONS = [
 ]
 
 func _ready():
+	rng.randomize()
 	change_direction()
 
 func _physics_process(_delta):
@@ -39,10 +41,10 @@ func set_direction(_direction):
 	print("velocity: ", velocity)
 	print("scale.x: ", scale.x)
 
-	timer.start(rand_range(change_direction_max_seconds / 3.0, change_direction_max_seconds))
+	timer.start(rng.randf_range(change_direction_max_seconds / 3.0, change_direction_max_seconds))
 
 func set_velocity():
-	velocity = direction * rand_range(speed_max / 3, speed_max)
+	velocity = direction * rng.randf_range(speed_max / 3, speed_max)
 
 func _on_Timer_timeout():
 	change_direction()
