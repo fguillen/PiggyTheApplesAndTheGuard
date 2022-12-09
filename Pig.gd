@@ -117,16 +117,18 @@ func look_towards_direction(direction):
 	elif direction.x < 0:
 		scale.x = -size
 
-func _on_Pig_area_exited(area:Area2D):
-	if area is WorldTree:
-		set_hidden(false)
 
 func _on_Pig_area_entered(area:Area2D):
-	if area is WorldTree:
-		set_hidden(true)
-
 	if area is Apple:
 		apple_eat_ini(area)
 
 func _on_TimerEating_timeout():
 	apple_eat_end()
+
+func _on_BodyArea_area_exited(area:Area2D):
+	if area is WorldTree:
+		set_hidden(false)
+
+func _on_BodyArea_area_entered(area:Area2D):
+	if area is WorldTree:
+		set_hidden(true)
