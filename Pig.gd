@@ -5,10 +5,17 @@ export(int) var speed = 200
 
 onready var animationPlayer: = $AnimationPlayer
 onready var label: = $Label
+onready var sprite: = $Sprite
+
+const TextureVisible = preload("res://Pig.png")
+const TextureHidden = preload("res://Pig_hidden.png")
 
 var running = false
 var hidden = false
 var direction = Vector2.ZERO
+
+func _ready():
+	sprite.texture = TextureVisible
 
 func _process(delta):
 	running = false
@@ -40,13 +47,20 @@ func _process(delta):
 
 func _on_Pig_area_entered(area:Area2D):
 	if area is WorldTree:
-		hidden = true
+		set_hidden(true)
 
 	if area is Apple:
 		collect_apple(area)
 
 func collect_apple(apple):
 	apple.queue_free()
+
+func set_hidden(value):
+	hidden = value
+	if hidden:
+		sprite.texture = TextureHidden
+	else:
+		sprite.texture = TextureVisible
 
 func move(_direction, delta):
 	running = true
@@ -55,4 +69,4 @@ func move(_direction, delta):
 
 func _on_Pig_area_exited(area:Area2D):
 	if area is WorldTree:
-		hidden = false
+		set_hidden(false)
