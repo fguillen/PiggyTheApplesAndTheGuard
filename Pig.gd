@@ -119,11 +119,6 @@ func look_towards_direction(direction):
 	elif direction.x < 0:
 		scale.x = -size
 
-
-func _on_Pig_area_entered(area:Area2D):
-	if area is Apple:
-		apple_eat_ini(area)
-
 func _on_TimerEating_timeout():
 	apple_eat_end()
 
@@ -143,3 +138,8 @@ func wounded(arrow):
 	arrow.global_transform = old_transform
 	arrow.z_index = 30
 	arrow.stick()
+
+
+func _on_PigMouth_area_entered(area:Area2D):
+	if area is Apple:
+		apple_eat_ini(area)

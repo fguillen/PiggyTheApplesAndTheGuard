@@ -40,7 +40,7 @@ position = Vector2( 48, 128 )
 position = Vector2( 80, 56 )
 
 [node name="Guard" parent="." instance=ExtResource( 4 )]
-position = Vector2( -16, 224 )
+position = Vector2( 32, 224 )
 collision_layer = 32
 collision_mask = 16
 

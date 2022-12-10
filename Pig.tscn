@@ -109,8 +109,7 @@ shape = SubResource( 6 )
 position = Vector2( -0.499999, 3 )
 scale = Vector2( 1.15, 0.8 )
 
-[connection signal="area_entered" from="." to="." method="_on_Pig_area_entered"]
-[connection signal="area_exited" from="." to="." method="_on_Pig_area_exited"]
+[connection signal="area_entered" from="." to="." method="_on_PigMouth_area_entered"]
 [connection signal="timeout" from="TimerEating" to="." method="_on_TimerEating_timeout"]
 [connection signal="area_entered" from="PigBody" to="." method="_on_BodyArea_area_entered"]
 [connection signal="area_exited" from="PigBody" to="." method="_on_BodyArea_area_exited"]
