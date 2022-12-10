@@ -10,7 +10,7 @@ var destiny_position
 func _ready():
 	print("Arrow.ready")
 	print("collision.disabled: ", collision.disabled)
-	collision.disabled = true
+
 
 # func _ready():
 # 	aim(Vector2(0, 0))
@@ -18,7 +18,7 @@ func _ready():
 
 func aim(aim_position, _destiny_position):
 	print("Arrow.aim")
-	print("collision.disabled: ", collision.disabled)
+	collision.disabled = true
 	global_position = aim_position
 	destiny_position = _destiny_position
 	if destiny_position.x < aim_position.x:
@@ -46,3 +46,9 @@ func stick():
 
 func _on_Tween_tween_completed(_object:Object, _key:NodePath):
 	stick()
+
+
+func _on_Arrow_area_entered(area:Area2D):
+	print("Arrow.collision: ", area.name)
+	if area is PigBody:
+		area.pig.wounded(self)

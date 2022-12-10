@@ -20,7 +20,7 @@ texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 1 )
-z_index = 20
+z_index = 60
 shape = SubResource( 1 )
 
 [node name="Tween" type="Tween" parent="."]

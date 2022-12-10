@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Pig.png" type="Texture" id=1]
 [ext_resource path="res://Pig.gd" type="Script" id=2]
+[ext_resource path="res://PigBody.gd" type="Script" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 3.0
@@ -88,14 +89,17 @@ text = "hello"
 [node name="TimerEating" type="Timer" parent="."]
 one_shot = true
 
-[node name="BodyArea" type="Area2D" parent="."]
+[node name="PigBody" type="Area2D" parent="."]
+position = Vector2( 0, 4 )
+z_index = 40
+collision_layer = 2
+script = ExtResource( 3 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BodyArea"]
-position = Vector2( 0.5, 4 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PigBody"]
 shape = SubResource( 6 )
 
 [connection signal="area_entered" from="." to="." method="_on_Pig_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_Pig_area_exited"]
 [connection signal="timeout" from="TimerEating" to="." method="_on_TimerEating_timeout"]
-[connection signal="area_entered" from="BodyArea" to="." method="_on_BodyArea_area_entered"]
-[connection signal="area_exited" from="BodyArea" to="." method="_on_BodyArea_area_exited"]
+[connection signal="area_entered" from="PigBody" to="." method="_on_BodyArea_area_entered"]
+[connection signal="area_exited" from="PigBody" to="." method="_on_BodyArea_area_exited"]

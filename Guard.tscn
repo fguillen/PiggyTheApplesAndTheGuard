@@ -89,6 +89,7 @@ position = Vector2( 6, 0 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VisionSensor"]
 position = Vector2( -17, 0 )
+z_index = 100
 polygon = PoolVector2Array( 16, 0, 64, -32, 144, -32, 144, 40, 64, 40 )
 
 [node name="Sprite" type="Sprite" parent="."]

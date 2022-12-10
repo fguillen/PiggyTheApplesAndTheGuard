@@ -129,3 +129,12 @@ func _on_BodyArea_area_exited(area:Area2D):
 func _on_BodyArea_area_entered(area:Area2D):
 	if area is WorldTree:
 		set_hidden(true)
+
+func wounded(arrow):
+	print("Pig wounded!!")
+	var old_transform = arrow.global_transform
+	arrow.get_parent().remove_child(arrow)
+	add_child(arrow)
+	arrow.global_transform = old_transform
+	arrow.z_index = 30
+	arrow.stick()
