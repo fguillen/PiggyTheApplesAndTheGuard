@@ -19,6 +19,7 @@ const TextureHidden = preload("res://Pig_hidden.png")
 var hidden = false
 var size = 1
 var appleEating = null
+var screen_size = Vector2.ZERO
 
 enum State {
 	IDLE,
@@ -32,6 +33,7 @@ var state = State.IDLE
 
 func _ready():
 	sprite.texture = TextureVisible
+	screen_size = get_viewport().get_visible_rect().size
 
 
 func _process(delta):
@@ -71,7 +73,16 @@ func set_hidden(value):
 
 
 func move(_direction, delta):
+	var old_position = position
 	position += _direction * speed * delta
+
+	if(
+		position.x > screen_size.x - 20 or
+		position.x < 20 or
+		position.y > screen_size.y - 20 or
+		position.y < 20
+	):
+		position = old_position
 
 
 func process_state_idle(direction, _delta):
