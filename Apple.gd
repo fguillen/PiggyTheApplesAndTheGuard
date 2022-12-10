@@ -19,5 +19,5 @@ func fall_from_sky(destiny_position):
 	tween.start()
 
 
-func _on_Tween_tween_completed(object:Object, key:NodePath):
+func _on_Tween_tween_completed(_object:Object, _key:NodePath):
 	collision.disabled = false

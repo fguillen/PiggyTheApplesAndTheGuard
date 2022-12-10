@@ -1,10 +1,42 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Guard.gd" type="Script" id=1]
 [ext_resource path="res://Archer.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 7 )
+
+[sub_resource type="Animation" id=6]
+resource_name = "Aim"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "Attack"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "Idle"
@@ -19,21 +51,6 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 0 ]
-}
-
-[sub_resource type="Animation" id=3]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
 "values": [ 0 ]
 }
 
@@ -77,10 +94,12 @@ polygon = PoolVector2Array( 16, 0, 64, -32, 144, -32, 144, 40, 64, 40 )
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 hframes = 5
+frame = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Aim = SubResource( 6 )
+anims/Attack = SubResource( 7 )
 anims/Idle = SubResource( 2 )
-anims/RESET = SubResource( 3 )
 anims/Run = SubResource( 4 )
 
 [node name="Label" type="Label" parent="."]
@@ -90,11 +109,27 @@ margin_right = 23.0
 margin_bottom = -12.0
 text = "hello"
 
+[node name="LabelState" type="Label" parent="."]
+margin_left = -17.0
+margin_top = -42.0
+margin_right = 23.0
+margin_bottom = -28.0
+text = "hello"
+
 [node name="EndOfWorldSensor" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EndOfWorldSensor"]
 position = Vector2( -1.5, 0 )
 shape = SubResource( 5 )
 
+[node name="TimerAim" type="Timer" parent="."]
+one_shot = true
+
+[node name="TimerAttack" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="area_entered" from="VisionSensor" to="." method="_on_VisionSensor_area_entered"]
 [connection signal="area_entered" from="EndOfWorldSensor" to="." method="_on_EndOfWorldSensor_area_entered"]
+[connection signal="timeout" from="TimerAim" to="." method="_on_TimerAim_timeout"]
+[connection signal="timeout" from="TimerAttack" to="." method="_on_TimerAttack_timeout"]
