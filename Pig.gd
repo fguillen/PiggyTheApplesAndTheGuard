@@ -33,6 +33,7 @@ var state = State.IDLE
 func _ready():
 	sprite.texture = TextureVisible
 
+
 func _process(delta):
 	label.text = State.keys()[state]
 	labelVisible.set_global_position(Vector2(100, 100))
@@ -45,11 +46,13 @@ func _process(delta):
 		State.EATING: process_state_eating(direction, delta)
 		State.WOUNDED: process_state_wounded(direction, delta)
 
+
 func apple_eat_ini(apple):
 	set_state(State.EATING)
 	apple.eating()
 	appleEating = apple
 	timerEating.start(eatingTime)
+
 
 func apple_eat_end():
 	appleEating.queue_free()
@@ -58,12 +61,14 @@ func apple_eat_end():
 	speed *= speedScaler
 	scale = Vector2(size if scale.x > 0 else -size, size)
 
+
 func set_hidden(value):
 	hidden = value
 	if hidden:
 		sprite.texture = TextureHidden
 	else:
 		sprite.texture = TextureVisible
+
 
 func move(_direction, delta):
 	position += _direction * speed * delta
@@ -76,6 +81,7 @@ func process_state_idle(direction, _delta):
 	if direction.length() > 0:
 		set_state(State.RUN)
 
+
 func process_state_run(direction, delta):
 	animationPlayer.play("Run")
 
@@ -86,15 +92,19 @@ func process_state_run(direction, delta):
 	if direction.length() == 0:
 		set_state(State.IDLE)
 
+
 func process_state_eating(_direction, _delta):
 	animationPlayer.play("Eating")
 
-func process_state_wounded(direction, delta):
+
+func process_state_wounded(_direction, _delta):
 	pass
+
 
 func set_state(value):
 	print("set_state: ", value);
 	state = value
+
 
 func get_direction():
 	var result = Vector2.ZERO
@@ -113,22 +123,13 @@ func get_direction():
 
 	return result
 
+
 func look_towards_direction(direction):
 	if direction.x > 0:
 		scale.x = size
 	elif direction.x < 0:
 		scale.x = -size
 
-func _on_TimerEating_timeout():
-	apple_eat_end()
-
-func _on_BodyArea_area_exited(area:Area2D):
-	if area is WorldTree:
-		set_hidden(false)
-
-func _on_BodyArea_area_entered(area:Area2D):
-	if area is WorldTree:
-		set_hidden(true)
 
 func wounded(arrow):
 	print("Pig wounded!!")
@@ -143,3 +144,21 @@ func wounded(arrow):
 func _on_PigMouth_area_entered(area:Area2D):
 	if area is Apple:
 		apple_eat_ini(area)
+
+
+# Timers
+
+func _on_TimerEating_timeout():
+	apple_eat_end()
+
+
+# Collisions
+
+func _on_BodyArea_area_exited(area:Area2D):
+	if area is WorldTree:
+		set_hidden(false)
+
+
+func _on_BodyArea_area_entered(area:Area2D):
+	if area is WorldTree:
+		set_hidden(true)

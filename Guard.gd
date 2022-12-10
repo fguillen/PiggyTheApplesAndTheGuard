@@ -45,6 +45,7 @@ func _ready():
 	random_next_position()
 	screen_size = get_viewport().get_visible_rect().size
 
+
 func _process(delta):
 	# label.text = State.keys()[state]
 	label.text = "%.1f" % timerNextPosition.time_left
@@ -57,6 +58,7 @@ func _process(delta):
 		State.RUN: process_state_run(direction, delta)
 		State.AIM: process_state_aim(direction, delta)
 		State.ATTACK: process_state_attack(direction, delta)
+
 
 func random_next_position():
 	next_position = Vector2(
@@ -71,6 +73,7 @@ func random_next_position():
 
 	set_direction()
 
+
 func set_direction():
 	var global_direction = next_position - global_position
 	if abs(global_direction.x) > abs(global_direction.y):
@@ -82,10 +85,10 @@ func set_direction():
 	set_random_velocity()
 	look_towards_direction()
 
+
 func set_random_velocity():
 	velocity = direction * rnd.randf_range(speedRange.x, speedRange.y)
 	animationPlayer.playback_speed = velocity.length() / speedRange.y
-
 
 
 func look_towards_direction():
@@ -95,20 +98,18 @@ func look_towards_direction():
 		scale.x = -1
 
 
-
-
-
-func process_state_idle(direction, _delta):
+func process_state_idle(_direction, _delta):
 	animationPlayer.play("Idle")
 
 	# Change state
 	if direction.length() > 0:
 		set_state(State.RUN)
 
-func process_state_run(direction, delta):
+
+func process_state_run(_direction, delta):
 	animationPlayer.play("Run")
 
-	move(direction, delta)
+	move(_direction, delta)
 
 	if((position - next_position).length() < 10):
 		position_arrived()
