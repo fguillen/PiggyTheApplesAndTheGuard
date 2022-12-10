@@ -70,7 +70,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 4, 7 )
+extents = Vector2( 5, 9.5 )
 
 [node name="Guard" type="Area2D"]
 z_index = 100
@@ -86,11 +86,13 @@ collision_layer = 16
 collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VisionSensor"]
-position = Vector2( -17, 0 )
+position = Vector2( -11, 0 )
 z_index = 100
 polygon = PoolVector2Array( 16, 0, 64, -32, 144, -32, 144, 40, 64, 40 )
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 1, -4.76837e-07 )
+scale = Vector2( 1.54167, 1.54167 )
 texture = ExtResource( 2 )
 hframes = 5
 frame = 3
@@ -135,15 +137,16 @@ one_shot = true
 one_shot = true
 
 [node name="SpriteSurprise" type="Sprite" parent="."]
-position = Vector2( 8, -15 )
+position = Vector2( 10, -25 )
+scale = Vector2( 1.45833, 1.45833 )
 texture = ExtResource( 3 )
 hframes = 6
 
 [node name="ArrowHolder" type="Node2D" parent="."]
-position = Vector2( 11, 2 )
+position = Vector2( 18, 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -1, 4 )
+position = Vector2( 0, 6.5 )
 shape = SubResource( 1 )
 
 [node name="SpriteNextPosition" type="Sprite" parent="."]
