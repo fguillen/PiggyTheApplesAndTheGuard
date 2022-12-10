@@ -75,9 +75,7 @@ func set_direction(_direction):
 func set_velocity():
 	velocity = direction * rng.randf_range(speedRange.x, speedRange.y)
 
-func _on_Timer_timeout():
-	if state == State.RUN or state == State.IDLE:
-		random_direction()
+
 
 func world_limit_reached():
 	print("world_limit_reached")
@@ -90,9 +88,7 @@ func look_towards_direction(direction):
 		scale.x = -1
 
 
-func _on_VisionSensor_area_entered(area:Area2D):
-	if area is Pig:
-		aim(area.global_position)
+
 
 
 func process_state_idle(direction, _delta):
@@ -125,9 +121,6 @@ func set_state(value):
 	state = value
 
 
-func _on_EndOfWorldSensor_area_entered(area:Area2D):
-	if area is WorldLimit:
-		world_limit_reached()
 
 func attack():
 	set_state(State.ATTACK)
@@ -146,6 +139,17 @@ func aim(target_position):
 	current_arrow.aim(global_position, target_position)
 	timerAim.start(rng.randf_range(aimTime.x, aimTime.y))
 
+
+func _on_EndOfWorldSensor_area_entered(area:Area2D):
+	if area is WorldLimit:
+		world_limit_reached()
+
+
+func _on_VisionSensor_area_entered(area:Area2D):
+	if area is Pig and not area.hidden:
+		aim(area.global_position)
+
+
 func _on_TimerAim_timeout():
 	attack()
 
@@ -154,3 +158,8 @@ func _on_TimerAttack_timeout():
 	visionCollision.disabled = false
 	random_direction()
 	set_state(State.IDLE)
+
+
+func _on_Timer_timeout():
+	if state == State.RUN or state == State.IDLE:
+		random_direction()
