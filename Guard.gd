@@ -13,6 +13,7 @@ onready var visionCollision: = $VisionSensor/CollisionPolygon2D
 onready var spriteSurprise: = $SpriteSurprise
 onready var arrowHolder: = $ArrowHolder
 onready var spriteNextPosition: = $SpriteNextPosition
+onready var audioPlayer: = $AudioStreamPlayer2D
 
 export(Vector2) var speedRange = Vector2(10, 80)
 export(Vector2) var changeDirectionTime = Vector2(1, 3)
@@ -20,6 +21,7 @@ export(Vector2) var aimTime = Vector2(0.1, 0.5)
 export(Vector2) var attackTime = Vector2(2, 4)
 
 const Arrow = preload("res://Arrow.tscn")
+const SoundHei = preload("res://Sounds/Hei.wav")
 
 var direction = Vector2.ZERO
 var velocity = Vector2.ZERO
@@ -149,6 +151,8 @@ func attack():
 
 
 func surpise():
+	audioPlayer.stream = SoundHei
+	audioPlayer.play()
 	spriteSurprise.visible = true
 
 
@@ -159,7 +163,7 @@ func unsurpise():
 func aim(target_position):
 	set_state(State.AIM)
 	surpise()
-	visionCollision.disabled = true
+	# visionCollision.disabled = true
 	current_arrow = Arrow.instance()
 	get_tree().get_root().add_child(current_arrow)
 	print("Aim")
@@ -186,7 +190,7 @@ func _on_TimerAim_timeout():
 
 
 func _on_TimerAttack_timeout():
-	visionCollision.disabled = false
+	# visionCollision.disabled = false
 	position_arrived()
 
 

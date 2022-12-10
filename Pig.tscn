@@ -111,6 +111,8 @@ shape = SubResource( 6 )
 position = Vector2( -0.499999, 3 )
 scale = Vector2( 1.15, 0.8 )
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
 [connection signal="area_entered" from="." to="." method="_on_PigMouth_area_entered"]
 [connection signal="timeout" from="TimerEating" to="." method="_on_TimerEating_timeout"]
 [connection signal="area_entered" from="PigBody" to="." method="_on_BodyArea_area_entered"]

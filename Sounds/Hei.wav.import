@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Hei.wav-29b1e30365e2e9f4fac746a2844c0337.sample"
+
+[deps]
+
+source_file="res://Sounds/Hei.wav"
+dest_files=[ "res://.import/Hei.wav-29b1e30365e2e9f4fac746a2844c0337.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

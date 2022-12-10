@@ -9,7 +9,7 @@ var rng = RandomNumberGenerator.new()
 
 func _ready():
 	screen_size = get_viewport().get_visible_rect().size
-	spawn_apple()
+	timer.start(4)
 	rng.randomize()
 
 func spawn_apple():

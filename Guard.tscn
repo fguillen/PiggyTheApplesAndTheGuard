@@ -152,6 +152,8 @@ texture = ExtResource( 3 )
 hframes = 6
 frame = 1
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
 [connection signal="area_entered" from="." to="." method="_on_Guard_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_Guard_area_exited"]
 [connection signal="timeout" from="TimerNextPosition" to="." method="_on_TimerNextPosition_timeout"]

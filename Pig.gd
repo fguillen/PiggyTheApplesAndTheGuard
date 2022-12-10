@@ -2,7 +2,7 @@ extends Area2D
 class_name Pig
 
 export(int) var speed = 200
-export(int) var eatingTime = 2
+export(Vector2) var eatingTime = Vector2(1, 3)
 export(float) var sizeScaler = 1.1
 export(float) var speedScaler = 0.9
 
@@ -12,14 +12,17 @@ onready var labelVisible: = $LabelVisible
 onready var sprite: = $Sprite
 onready var timerEating: = $TimerEating
 onready var visibilityNotifier: = $VisibilityNotifier2D
+onready var audioPlayer: = $AudioStreamPlayer2D
 
 const TextureVisible = preload("res://Pig.png")
 const TextureHidden = preload("res://Pig_hidden.png")
+const SoundChewing = preload("res://Sounds/Chewing.wav")
 
 var hidden = false
 var size = 1
 var appleEating = null
 var screen_size = Vector2.ZERO
+var rnd = RandomNumberGenerator.new()
 
 enum State {
 	IDLE,
@@ -34,6 +37,7 @@ var state = State.IDLE
 func _ready():
 	sprite.texture = TextureVisible
 	screen_size = get_viewport().get_visible_rect().size
+	rnd.randomize()
 
 
 func _process(delta):
@@ -53,10 +57,15 @@ func apple_eat_ini(apple):
 	set_state(State.EATING)
 	apple.eating()
 	appleEating = apple
-	timerEating.start(eatingTime)
+	var actual_eating_time = rnd.randf_range(eatingTime.x, eatingTime.y)
+	timerEating.start(actual_eating_time)
+	audioPlayer.stream = SoundChewing
+	audioPlayer.pitch_scale = actual_eating_time / eatingTime.y
+	audioPlayer.play()
 
 
 func apple_eat_end():
+	audioPlayer.stop()
 	appleEating.queue_free()
 	set_state(State.IDLE)
 	size *= sizeScaler

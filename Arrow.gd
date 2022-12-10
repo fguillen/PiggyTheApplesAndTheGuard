@@ -6,6 +6,10 @@ export(int) var speed = 100
 onready var tween: = $Tween
 onready var sprite: = $Sprite
 onready var collision: = $CollisionShape2D
+onready var audioPlayer: = $AudioStreamPlayer2D
+
+const SoundArrowImpact = preload("res://Sounds/ArrowImpact.wav")
+const SoundArrowShoot = preload("res://Sounds/ArrowShoot.wav")
 
 var destiny_position
 
@@ -29,6 +33,8 @@ func aim(aim_position, _destiny_position):
 func shoot():
 	print("Arrow.shoot")
 	print("collision.disabled: ", collision.disabled)
+	audioPlayer.stream = SoundArrowShoot
+	audioPlayer.play()
 	collision.disabled = false
 	var duration = (destiny_position - global_position).length() / speed
 	tween.interpolate_property(
@@ -43,6 +49,8 @@ func shoot():
 	tween.start()
 
 func stick():
+	audioPlayer.stream = SoundArrowImpact
+	audioPlayer.play()
 	collision.disabled = true
 	sprite.rotation_degrees = rand_range(30, 110)
 	sprite.frame = 1
