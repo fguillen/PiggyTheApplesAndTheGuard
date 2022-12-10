@@ -4,10 +4,14 @@ class_name Guard
 onready var timer: = $Timer
 onready var timerAim: = $TimerAim
 onready var timerAttack: = $TimerAttack
+onready var timerSurprise: = $TimerSurprise
 onready var label: = $Label
 onready var labelState: = $LabelState
 onready var animationPlayer: = $AnimationPlayer
 onready var visionCollision: = $VisionSensor/CollisionPolygon2D
+onready var spriteSurprise: = $SpriteSurprise
+onready var arrowHolder: = $ArrowHolder
+onready var visibilityNotifier: = $VisibilityNotifier2D
 
 export(Vector2) var speedRange = Vector2(10, 80)
 export(Vector2) var changeDirectionTime = Vector2(1, 3)
@@ -39,6 +43,7 @@ enum State {
 var state = State.IDLE
 
 func _ready():
+	unsurpise()
 	rng.randomize()
 	random_direction()
 
@@ -74,6 +79,7 @@ func set_direction(_direction):
 
 func set_velocity():
 	velocity = direction * rng.randf_range(speedRange.x, speedRange.y)
+	animationPlayer.playback_speed = velocity.length() / speedRange.y
 
 
 
@@ -124,19 +130,25 @@ func set_state(value):
 
 func attack():
 	set_state(State.ATTACK)
+	timerSurprise.start(1)
 	current_arrow.shoot()
 	timerAttack.start(rng.randf_range(attackTime.x, attackTime.y))
 
+func surpise():
+	spriteSurprise.visible = true
 
+func unsurpise():
+	spriteSurprise.visible = false
 
 func aim(target_position):
 	set_state(State.AIM)
+	surpise()
 	visionCollision.disabled = true
 	print("Instantiation")
 	current_arrow = Arrow.instance()
 	get_tree().get_root().add_child(current_arrow)
 	print("Aim")
-	current_arrow.aim(global_position, target_position)
+	current_arrow.aim(arrowHolder.global_position, target_position)
 	timerAim.start(rng.randf_range(aimTime.x, aimTime.y))
 
 
@@ -146,7 +158,7 @@ func _on_EndOfWorldSensor_area_entered(area:Area2D):
 
 
 func _on_VisionSensor_area_entered(area:Area2D):
-	if area is Pig and not area.hidden:
+	if area is Pig and not area.hidden and visibilityNotifier.is_on_screen():
 		aim(area.global_position)
 
 
@@ -163,3 +175,7 @@ func _on_TimerAttack_timeout():
 func _on_Timer_timeout():
 	if state == State.RUN or state == State.IDLE:
 		random_direction()
+
+
+func _on_TimerSurprise_timeout():
+	unsurpise()
