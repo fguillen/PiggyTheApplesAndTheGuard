@@ -43,6 +43,7 @@ func _process(delta):
 
 func apple_eat_ini(apple):
 	set_state(State.EATING)
+	apple.eating()
 	appleEating = apple
 	timerEating.start(eatingTime)
 

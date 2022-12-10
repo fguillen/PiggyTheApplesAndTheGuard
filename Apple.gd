@@ -3,6 +3,8 @@ class_name Apple
 
 onready var tween: = $Tween
 onready var collision: = $CollisionShape2D
+onready var animationPlayer: = $AnimationPlayer
+
 
 func fall_from_sky(destiny_position):
 	global_position = Vector2(destiny_position.x, -20)
@@ -18,6 +20,10 @@ func fall_from_sky(destiny_position):
 	)
 	tween.start()
 
+func eating():
+	animationPlayer.play("Eating")
+
 
 func _on_Tween_tween_completed(_object:Object, _key:NodePath):
 	collision.disabled = false
+	animationPlayer.play("Land")
