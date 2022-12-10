@@ -1,11 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Guard.gd" type="Script" id=1]
 [ext_resource path="res://Archer.png" type="Texture" id=2]
 [ext_resource path="res://Effects.png" type="Texture" id=3]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 4, 7 )
 
 [sub_resource type="Animation" id=6]
 resource_name = "Aim"
@@ -72,22 +69,21 @@ tracks/0/keys = {
 "values": [ 1, 0 ]
 }
 
-[sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 5.5, 10 )
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 4, 7 )
 
-[node name="Guard" type="Node2D"]
+[node name="Guard" type="Area2D"]
 z_index = 100
+collision_layer = 256
 script = ExtResource( 1 )
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -1, 4 )
-shape = SubResource( 1 )
-
 [node name="VisionSensor" type="Area2D" parent="."]
 position = Vector2( 6, 0 )
+collision_layer = 16
+collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VisionSensor"]
 position = Vector2( -17, 0 )
@@ -119,11 +115,12 @@ margin_right = 23.0
 margin_bottom = -28.0
 text = "hello"
 
-[node name="EndOfWorldSensor" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EndOfWorldSensor"]
-position = Vector2( -1.5, 0 )
-shape = SubResource( 5 )
+[node name="LabelVisible" type="Label" parent="."]
+margin_left = -17.0
+margin_top = -56.0
+margin_right = 23.0
+margin_bottom = -42.0
+text = "hello"
 
 [node name="TimerAim" type="Timer" parent="."]
 one_shot = true
@@ -131,22 +128,25 @@ one_shot = true
 [node name="TimerAttack" type="Timer" parent="."]
 one_shot = true
 
+[node name="TimerSurprise" type="Timer" parent="."]
+one_shot = true
+
 [node name="SpriteSurprise" type="Sprite" parent="."]
 position = Vector2( 8, -15 )
 texture = ExtResource( 3 )
 hframes = 6
 
-[node name="TimerSurprise" type="Timer" parent="."]
-one_shot = true
-
 [node name="ArrowHolder" type="Node2D" parent="."]
 position = Vector2( 11, 2 )
 
-[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -1, 4 )
+shape = SubResource( 1 )
 
+[connection signal="area_entered" from="." to="." method="_on_Guard_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_Guard_area_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="area_entered" from="VisionSensor" to="." method="_on_VisionSensor_area_entered"]
-[connection signal="area_entered" from="EndOfWorldSensor" to="." method="_on_EndOfWorldSensor_area_entered"]
 [connection signal="timeout" from="TimerAim" to="." method="_on_TimerAim_timeout"]
 [connection signal="timeout" from="TimerAttack" to="." method="_on_TimerAttack_timeout"]
 [connection signal="timeout" from="TimerSurprise" to="." method="_on_TimerSurprise_timeout"]

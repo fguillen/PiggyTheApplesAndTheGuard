@@ -15,11 +15,16 @@ _global_script_classes=[ {
 "path": "res://Apple.gd"
 }, {
 "base": "Area2D",
+"class": "AreaScreen",
+"language": "GDScript",
+"path": "res://Area2DScreen.gd"
+}, {
+"base": "Area2D",
 "class": "Arrow",
 "language": "GDScript",
 "path": "res://Arrow.gd"
 }, {
-"base": "Node2D",
+"base": "Area2D",
 "class": "Guard",
 "language": "GDScript",
 "path": "res://Guard.gd"
@@ -46,6 +51,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Apple": "",
+"AreaScreen": "",
 "Arrow": "",
 "Guard": "",
 "Pig": "",
@@ -105,6 +111,8 @@ texture={
 2d_physics/layer_2="Pig"
 2d_physics/layer_3="Apples"
 2d_physics/layer_4="Arrows"
+2d_physics/layer_5="AreaScreen"
+2d_physics/layer_6="Guard"
 
 [physics]
 

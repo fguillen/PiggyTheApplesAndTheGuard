@@ -1,4 +1,4 @@
-extends Node2D
+extends Area2D
 class_name Guard
 
 onready var timer: = $Timer
@@ -7,11 +7,11 @@ onready var timerAttack: = $TimerAttack
 onready var timerSurprise: = $TimerSurprise
 onready var label: = $Label
 onready var labelState: = $LabelState
+onready var labelVisible: = $LabelVisible
 onready var animationPlayer: = $AnimationPlayer
 onready var visionCollision: = $VisionSensor/CollisionPolygon2D
 onready var spriteSurprise: = $SpriteSurprise
 onready var arrowHolder: = $ArrowHolder
-onready var visibilityNotifier: = $VisibilityNotifier2D
 
 export(Vector2) var speedRange = Vector2(10, 80)
 export(Vector2) var changeDirectionTime = Vector2(1, 3)
@@ -24,6 +24,7 @@ var direction = Vector2.ZERO
 var velocity = Vector2.ZERO
 var rng = RandomNumberGenerator.new()
 var current_arrow
+var is_visible = false
 
 var DIRECTIONS = [
 	Vector2(0, 0),
@@ -44,6 +45,7 @@ var state = State.IDLE
 
 func _ready():
 	unsurpise()
+	set_visible(false)
 	rng.randomize()
 	random_direction()
 
@@ -51,6 +53,7 @@ func _process(delta):
 	# label.text = State.keys()[state]
 	label.text = "%.1f" % timer.time_left
 	labelState.text = State.keys()[state]
+	labelVisible.text = "true" if visionCollision.disabled else "false"
 
 	match state:
 		State.IDLE: process_state_idle(direction, delta)
@@ -144,27 +147,21 @@ func aim(target_position):
 	set_state(State.AIM)
 	surpise()
 	visionCollision.disabled = true
-	print("Instantiation")
 	current_arrow = Arrow.instance()
 	get_tree().get_root().add_child(current_arrow)
 	print("Aim")
 	current_arrow.aim(arrowHolder.global_position, target_position)
 	timerAim.start(rng.randf_range(aimTime.x, aimTime.y))
 
+func set_visible(value):
+	print("set_visible: ", value)
+	is_visible = value
+	# visionCollision.disabled = false if value else true
 
-func _on_EndOfWorldSensor_area_entered(area:Area2D):
-	if area is WorldLimit:
-		world_limit_reached()
-
-
-func _on_VisionSensor_area_entered(area:Area2D):
-	if area is Pig and not area.hidden and visibilityNotifier.is_on_screen():
-		aim(area.global_position)
-
+# Timers
 
 func _on_TimerAim_timeout():
 	attack()
-
 
 func _on_TimerAttack_timeout():
 	visionCollision.disabled = false
@@ -179,3 +176,22 @@ func _on_Timer_timeout():
 
 func _on_TimerSurprise_timeout():
 	unsurpise()
+
+
+func _on_VisionSensor_area_entered(area:Area2D):
+	if area is PigBody and not area.pig.hidden:
+		aim(area.global_position)
+
+
+# Collisions
+
+func _on_Guard_area_entered(area:Area2D):
+	if area is WorldLimit:
+		world_limit_reached()
+	elif area is AreaScreen:
+		set_visible(true)
+
+
+func _on_Guard_area_exited(area:Area2D):
+	if area is AreaScreen:
+		set_visible(false)

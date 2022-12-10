@@ -8,8 +8,10 @@ export(float) var speedScaler = 0.9
 
 onready var animationPlayer: = $AnimationPlayer
 onready var label: = $Label
+onready var labelVisible: = $LabelVisible
 onready var sprite: = $Sprite
 onready var timerEating: = $TimerEating
+onready var visibilityNotifier: = $VisibilityNotifier2D
 
 const TextureVisible = preload("res://Pig.png")
 const TextureHidden = preload("res://Pig_hidden.png")
@@ -33,6 +35,8 @@ func _ready():
 
 func _process(delta):
 	label.text = State.keys()[state]
+	labelVisible.set_global_position(Vector2(100, 100))
+	labelVisible.text = "true" if visibilityNotifier.is_on_screen() else "no"
 	var direction = get_direction()
 
 	match state:
