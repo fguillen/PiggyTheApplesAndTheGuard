@@ -1,6 +1,8 @@
 extends Area2D
 class_name Arrow
 
+export(int) var speed = 100
+
 onready var tween: = $Tween
 onready var sprite: = $Sprite
 onready var collision: = $CollisionShape2D
@@ -28,12 +30,13 @@ func shoot():
 	print("Arrow.shoot")
 	print("collision.disabled: ", collision.disabled)
 	collision.disabled = false
+	var duration = (destiny_position - global_position).length() / speed
 	tween.interpolate_property(
 		self,
 		"global_position",
 		global_position,
 		destiny_position,
-		0.8,
+		duration,
 		Tween.TRANS_SINE,
 		Tween.EASE_IN_OUT
 	)

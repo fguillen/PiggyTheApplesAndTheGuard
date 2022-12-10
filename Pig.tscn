@@ -80,6 +80,7 @@ anims/Idle = SubResource( 2 )
 anims/Run = SubResource( 4 )
 
 [node name="Label" type="Label" parent="."]
+visible = false
 margin_left = -13.0
 margin_top = -19.0
 margin_right = 27.0
@@ -87,6 +88,7 @@ margin_bottom = -5.0
 text = "hello"
 
 [node name="LabelVisible" type="Label" parent="."]
+visible = false
 margin_left = -13.0
 margin_top = -33.0
 margin_right = 27.0
