@@ -62,8 +62,8 @@ func _process(delta):
 
 func random_next_position():
 	next_position = Vector2(
-			rnd.randi_range(-40, screen_size.x + 40),
-			rnd.randi_range(-40, screen_size.y + 40)
+			rnd.randi_range(20, screen_size.x - 20),
+			rnd.randi_range(20, screen_size.y - 20)
 		)
 	print("random_next_position: ", next_position)
 
@@ -209,13 +209,3 @@ func _on_TimerNextPosition_timeout():
 func _on_VisionSensor_area_entered(area:Area2D):
 	if area is PigBody and not area.pig.hidden:
 		aim(area.global_position)
-
-
-func _on_Guard_area_entered(area:Area2D):
-	if area is AreaScreen:
-		set_visible(true)
-
-
-func _on_Guard_area_exited(area:Area2D):
-	if area is AreaScreen:
-		set_visible(false)
