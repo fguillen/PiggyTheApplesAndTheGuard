@@ -11,18 +11,21 @@ onready var label: = $Label
 onready var labelVisible: = $LabelVisible
 onready var sprite: = $Sprite
 onready var timerEating: = $TimerEating
+onready var timerGoToGameOver: = $TimerGoToGameOver
 onready var visibilityNotifier: = $VisibilityNotifier2D
 onready var audioPlayer: = $AudioStreamPlayer2D
 
 const TextureVisible = preload("res://Pig.png")
 const TextureHidden = preload("res://Pig_hidden.png")
 const SoundChewing = preload("res://Sounds/Chewing.wav")
+const SoundOink = preload("res://Sounds/Oink.wav")
 
 var hidden = false
 var size = 1
 var appleEating = null
 var screen_size = Vector2.ZERO
 var rnd = RandomNumberGenerator.new()
+var run_away_direction
 
 enum State {
 	IDLE,
@@ -81,9 +84,13 @@ func set_hidden(value):
 		sprite.texture = TextureVisible
 
 
-func move(_direction, delta):
+func move_without_limits(direction, delta):
+	position += direction * speed * delta
+
+
+func move(direction, delta):
 	var old_position = position
-	position += _direction * speed * delta
+	position += direction * speed * delta
 
 	if(
 		position.x > screen_size.x - 20 or
@@ -117,9 +124,9 @@ func process_state_eating(_direction, _delta):
 	animationPlayer.play("Eating")
 
 
-func process_state_wounded(_direction, _delta):
-	pass
-
+func process_state_wounded(_direction, delta):
+	animationPlayer.play("Run")
+	move_without_limits(run_away_direction, delta)
 
 func set_state(value):
 	print("set_state: ", value);
@@ -160,16 +167,37 @@ func wounded(arrow):
 	arrow.z_index = 30
 	arrow.stick()
 
+	if arrow.aim_position.x < global_position.x:
+		run_away_direction = Vector2(1, 0)
+	else:
+		run_away_direction = Vector2(-1, 0)
 
-func _on_PigMouth_area_entered(area:Area2D):
-	if area is Apple:
-		apple_eat_ini(area)
+	audioPlayer.stream = SoundOink
+	audioPlayer.play()
+
+	look_towards_direction(run_away_direction)
+	timerGoToGameOver.start(4)
+
+	set_state(State.WOUNDED)
+
+
+func go_to_game_over_scene():
+	get_tree().change_scene("res://GameOver.tscn")
+
+
+
+
+
 
 
 # Timers
 
 func _on_TimerEating_timeout():
 	apple_eat_end()
+
+
+func _on_TimerGoToGameOver_timeout():
+	go_to_game_over_scene()
 
 
 # Collisions
@@ -182,3 +210,7 @@ func _on_BodyArea_area_exited(area:Area2D):
 func _on_BodyArea_area_entered(area:Area2D):
 	if area is WorldTree:
 		set_hidden(true)
+
+func _on_PigMouth_area_entered(area:Area2D):
+	if area is Apple:
+		apple_eat_ini(area)

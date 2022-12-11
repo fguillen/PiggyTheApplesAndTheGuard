@@ -65,6 +65,9 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource( 2 )
 speed = 100
+eatingTime = null
+sizeScaler = null
+speedScaler = null
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -98,6 +101,9 @@ text = "hello"
 [node name="TimerEating" type="Timer" parent="."]
 one_shot = true
 
+[node name="TimerGoToGameOver" type="Timer" parent="."]
+one_shot = true
+
 [node name="PigBody" type="Area2D" parent="."]
 position = Vector2( 0, 4 )
 z_index = 40
@@ -115,5 +121,6 @@ scale = Vector2( 1.15, 0.8 )
 
 [connection signal="area_entered" from="." to="." method="_on_PigMouth_area_entered"]
 [connection signal="timeout" from="TimerEating" to="." method="_on_TimerEating_timeout"]
+[connection signal="timeout" from="TimerGoToGameOver" to="." method="_on_TimerGoToGameOver_timeout"]
 [connection signal="area_entered" from="PigBody" to="." method="_on_BodyArea_area_entered"]
 [connection signal="area_exited" from="PigBody" to="." method="_on_BodyArea_area_exited"]

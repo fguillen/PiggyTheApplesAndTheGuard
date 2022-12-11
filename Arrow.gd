@@ -12,6 +12,7 @@ const SoundArrowImpact = preload("res://Sounds/ArrowImpact.wav")
 const SoundArrowShoot = preload("res://Sounds/ArrowShoot.wav")
 
 var destiny_position
+var aim_position
 
 func _ready():
 	print("Arrow.ready")
@@ -22,13 +23,17 @@ func _ready():
 # 	aim(Vector2(0, 0))
 # 	shoot(Vector2(150, 50))
 
-func aim(aim_position, _destiny_position):
+func aim(_aim_position, _destiny_position):
 	print("Arrow.aim")
 	collision.disabled = true
-	global_position = aim_position
+	aim_position = _aim_position
 	destiny_position = _destiny_position
+
+	global_position = aim_position
+
 	if destiny_position.x < aim_position.x:
 		scale.x = -1
+
 
 func shoot():
 	print("Arrow.shoot")
@@ -48,12 +53,14 @@ func shoot():
 	)
 	tween.start()
 
+
 func stick():
 	audioPlayer.stream = SoundArrowImpact
 	audioPlayer.play()
 	collision.disabled = true
 	sprite.rotation_degrees = rand_range(30, 110)
 	sprite.frame = 1
+
 
 func _on_Tween_tween_completed(_object:Object, _key:NodePath):
 	stick()
