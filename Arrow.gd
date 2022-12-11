@@ -57,7 +57,7 @@ func shoot():
 func stick():
 	audioPlayer.stream = SoundArrowImpact
 	audioPlayer.play()
-	collision.disabled = true
+	collision.call_deferred("set_disabled", true)
 	sprite.rotation_degrees = rand_range(30, 110)
 	sprite.frame = 1
 

@@ -13,7 +13,7 @@ onready var sprite: = $Sprite
 onready var timerEating: = $TimerEating
 onready var timerGoToGameOver: = $TimerGoToGameOver
 onready var visibilityNotifier: = $VisibilityNotifier2D
-onready var audioPlayer: = $AudioStreamPlayer2D
+onready var audioPlayer: = $AudioStreamPlayer
 
 const TextureVisible = preload("res://Pig.png")
 const TextureHidden = preload("res://Pig_hidden.png")
@@ -161,7 +161,7 @@ func look_towards_direction(direction):
 func wounded(arrow):
 	print("Pig wounded!!")
 	var old_transform = arrow.global_transform
-	arrow.get_parent().remove_child(arrow)
+	arrow.get_parent().call_deferred("remove_child", arrow)
 	call_deferred("add_child", arrow)
 	arrow.global_transform = old_transform
 	arrow.z_index = 30
@@ -173,7 +173,10 @@ func wounded(arrow):
 		run_away_direction = Vector2(-1, 0)
 
 	audioPlayer.stream = SoundOink
+	audioPlayer.pitch_scale = 1
 	audioPlayer.play()
+
+	speed = 150
 
 	look_towards_direction(run_away_direction)
 	timerGoToGameOver.start(4)
@@ -186,14 +189,11 @@ func go_to_game_over_scene():
 
 
 
-
-
-
-
 # Timers
 
 func _on_TimerEating_timeout():
-	apple_eat_end()
+	if state == State.EATING:
+		apple_eat_end()
 
 
 func _on_TimerGoToGameOver_timeout():
