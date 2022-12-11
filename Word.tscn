@@ -42,6 +42,8 @@ collision_layer = 32
 collision_mask = 16
 
 [node name="Plants" type="Node2D" parent="."]
+position = Vector2( -15, -14 )
+scale = Vector2( 1.6, 1.8 )
 z_index = 200
 
 [node name="Plants2" type="Sprite" parent="Plants"]
@@ -104,218 +106,103 @@ position = Vector2( 10, 184 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 
-[node name="Plants14" type="Sprite" parent="Plants"]
-position = Vector2( 10, 200 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 5 )
-
-[node name="Plants15" type="Sprite" parent="Plants"]
-position = Vector2( 10, 216 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 5 )
-
-[node name="Plants16" type="Sprite" parent="Plants"]
-position = Vector2( 10, 232 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 5 )
-
-[node name="Plants17" type="Sprite" parent="Plants"]
-position = Vector2( 10, 248 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 5 )
-
-[node name="Plants18" type="Sprite" parent="Plants"]
-position = Vector2( 10, 264 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 5 )
-
-[node name="Plants19" type="Sprite" parent="Plants"]
-position = Vector2( 10, 280 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 5 )
-
-[node name="Plants20" type="Sprite" parent="Plants"]
-position = Vector2( 10, 280 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 5 )
-
-[node name="Plants21" type="Sprite" parent="Plants"]
-position = Vector2( 10, 296 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 5 )
-
-[node name="Plants22" type="Sprite" parent="Plants"]
-position = Vector2( 10, 312 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 5 )
-
-[node name="Plants23" type="Sprite" parent="Plants"]
-position = Vector2( 10, 312 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 5 )
-
 [node name="Plants38" type="Sprite" parent="Plants"]
-position = Vector2( 170, 24 )
+position = Vector2( 121.333, 24.5556 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 
 [node name="Plants39" type="Sprite" parent="Plants"]
-position = Vector2( 170, 40 )
+position = Vector2( 121.333, 40.5556 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 
 [node name="Plants40" type="Sprite" parent="Plants"]
-position = Vector2( 170, 56 )
+position = Vector2( 121.333, 56.5556 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 
 [node name="Plants41" type="Sprite" parent="Plants"]
-position = Vector2( 170, 72 )
+position = Vector2( 121.333, 72.5556 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 
 [node name="Plants42" type="Sprite" parent="Plants"]
-position = Vector2( 170, 88 )
+position = Vector2( 121.333, 88.5556 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 
 [node name="Plants43" type="Sprite" parent="Plants"]
-position = Vector2( 170, 104 )
+position = Vector2( 121.333, 104.556 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 
 [node name="Plants44" type="Sprite" parent="Plants"]
-position = Vector2( 170, 120 )
+position = Vector2( 121.333, 120.556 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 
 [node name="Plants45" type="Sprite" parent="Plants"]
-position = Vector2( 170, 120 )
+position = Vector2( 121.333, 120.556 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 
 [node name="Plants46" type="Sprite" parent="Plants"]
-position = Vector2( 170, 136 )
+position = Vector2( 121.333, 136.556 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 
 [node name="Plants47" type="Sprite" parent="Plants"]
-position = Vector2( 170, 152 )
+position = Vector2( 121.333, 152.556 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 
 [node name="Plants48" type="Sprite" parent="Plants"]
-position = Vector2( 170, 168 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 5 )
-
-[node name="Plants49" type="Sprite" parent="Plants"]
-position = Vector2( 170, 184 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 5 )
-
-[node name="Plants50" type="Sprite" parent="Plants"]
-position = Vector2( 170, 200 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 5 )
-
-[node name="Plants51" type="Sprite" parent="Plants"]
-position = Vector2( 170, 216 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 5 )
-
-[node name="Plants52" type="Sprite" parent="Plants"]
-position = Vector2( 170, 232 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 5 )
-
-[node name="Plants53" type="Sprite" parent="Plants"]
-position = Vector2( 170, 248 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 5 )
-
-[node name="Plants54" type="Sprite" parent="Plants"]
-position = Vector2( 170, 264 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 5 )
-
-[node name="Plants55" type="Sprite" parent="Plants"]
-position = Vector2( 170, 264 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 5 )
-
-[node name="Plants56" type="Sprite" parent="Plants"]
-position = Vector2( 170, 280 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 5 )
-
-[node name="Plants57" type="Sprite" parent="Plants"]
-position = Vector2( 170, 296 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 5 )
-
-[node name="Plants58" type="Sprite" parent="Plants"]
-position = Vector2( 170, 296 )
+position = Vector2( 121.333, 168.556 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 
 [node name="Plants24" type="Sprite" parent="Plants"]
-position = Vector2( 26, 312 )
+position = Vector2( 24.6667, 184.667 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 
 [node name="Plants25" type="Sprite" parent="Plants"]
-position = Vector2( 42, 312 )
+position = Vector2( 40.6667, 184.667 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 
 [node name="Plants26" type="Sprite" parent="Plants"]
-position = Vector2( 58, 312 )
+position = Vector2( 56.6667, 184.667 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 
 [node name="Plants27" type="Sprite" parent="Plants"]
-position = Vector2( 74, 312 )
+position = Vector2( 72.6667, 184.667 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 
 [node name="Plants28" type="Sprite" parent="Plants"]
-position = Vector2( 90, 312 )
+position = Vector2( 88.6667, 184.667 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 
 [node name="Plants29" type="Sprite" parent="Plants"]
-position = Vector2( 90, 312 )
+position = Vector2( 88.6667, 184.667 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 
 [node name="Plants30" type="Sprite" parent="Plants"]
-position = Vector2( 106, 312 )
+position = Vector2( 104.667, 184.667 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 
 [node name="Plants31" type="Sprite" parent="Plants"]
-position = Vector2( 106, 312 )
+position = Vector2( 104.667, 184.667 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 
 [node name="Plants32" type="Sprite" parent="Plants"]
-position = Vector2( 122, 312 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 5 )
-
-[node name="Plants33" type="Sprite" parent="Plants"]
-position = Vector2( 138, 312 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 5 )
-
-[node name="Plants34" type="Sprite" parent="Plants"]
-position = Vector2( 154, 312 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 5 )
-
-[node name="Plants35" type="Sprite" parent="Plants"]
-position = Vector2( 170, 312 )
+position = Vector2( 120.667, 184.667 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 
@@ -369,22 +256,7 @@ position = Vector2( 106, 8 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 
-[node name="Plants68" type="Sprite" parent="Plants"]
-position = Vector2( 122, 8 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 5 )
-
-[node name="Plants69" type="Sprite" parent="Plants"]
-position = Vector2( 138, 8 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 5 )
-
-[node name="Plants70" type="Sprite" parent="Plants"]
-position = Vector2( 154, 8 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 5 )
-
 [node name="Plants71" type="Sprite" parent="Plants"]
-position = Vector2( 170, 8 )
+position = Vector2( 121.333, 8.55556 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
