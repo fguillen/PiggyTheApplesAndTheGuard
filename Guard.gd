@@ -165,8 +165,7 @@ func aim(target_position):
 	surpise()
 	# visionCollision.disabled = true
 	current_arrow = Arrow.instance()
-	get_tree().get_root().add_child(current_arrow)
-	print("Aim")
+	get_tree().current_scene.add_child(current_arrow)
 	current_arrow.aim(arrowHolder.global_position, target_position)
 	timerAim.start(rnd.randf_range(aimTime.x, aimTime.y))
 
@@ -212,4 +211,4 @@ func _on_TimerNextPosition_timeout():
 
 func _on_VisionSensor_area_entered(area:Area2D):
 	if area is PigBody and not area.pig.hidden:
-		aim(area.global_position)
+		call_deferred("aim", area.global_position)

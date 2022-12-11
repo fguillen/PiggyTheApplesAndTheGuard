@@ -63,7 +63,7 @@ _global_script_class_icons={
 [application]
 
 config/name="PiggyApples"
-run/main_scene="res://Word.tscn"
+run/main_scene="res://World.tscn"
 config/icon="res://icon.png"
 
 [display]

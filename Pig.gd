@@ -162,7 +162,7 @@ func wounded(arrow):
 	print("Pig wounded!!")
 	var old_transform = arrow.global_transform
 	arrow.get_parent().remove_child(arrow)
-	add_child(arrow)
+	call_deferred("add_child", arrow)
 	arrow.global_transform = old_transform
 	arrow.z_index = 30
 	arrow.stick()
@@ -182,7 +182,7 @@ func wounded(arrow):
 
 
 func go_to_game_over_scene():
-	get_tree().change_scene("res://GameOver.tscn")
+	var _r = get_tree().change_scene("res://GameOver.tscn")
 
 
 

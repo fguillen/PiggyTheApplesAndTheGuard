@@ -14,3 +14,4 @@ Check it out here: https://arturitoproductions.itch.io/piggy-the-apples-and-the-
         [Arrow impact](https://freesound.org/people/thecrow_br/sounds/574044/),
         [Chewing](https://freesound.org/people/InspectorJ/sounds/412068/),
         [Oink](https://freesound.org/people/frenkfurth/sounds/650924/)
+- Font: [VT323](https://fonts.google.com/specimen/VT323)
