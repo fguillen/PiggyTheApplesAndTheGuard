@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://CircleBorder.png" type="Texture" id=1]
+[ext_resource path="res://Gamepad.gd" type="Script" id=2]
+[ext_resource path="res://CircleBorder_small.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 90, 160 )
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 32.0
+
+[node name="Gamepad" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="ButtonScreen" type="TouchScreenButton" parent="."]
+shape = SubResource( 2 )
+
+[node name="ButtonGamepad" type="TouchScreenButton" parent="."]
+position = Vector2( 6, 250 )
+normal = ExtResource( 1 )
+shape = SubResource( 1 )
+
+[node name="SmallCircle" type="Sprite" parent="ButtonGamepad"]
+position = Vector2( 32, 31 )
+texture = ExtResource( 3 )

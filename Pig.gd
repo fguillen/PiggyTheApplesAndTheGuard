@@ -134,7 +134,11 @@ func set_state(value):
 
 
 func get_direction():
-	var result = Vector2.ZERO
+	var result = $Gamepad.direction
+
+	if result != Vector2.ZERO:
+		return result
+
 
 	if Input.is_action_pressed("ui_left"):
 		result = Vector2(-1, 0)

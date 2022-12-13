@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Pig.png" type="Texture" id=1]
 [ext_resource path="res://Pig.gd" type="Script" id=2]
 [ext_resource path="res://PigBody.gd" type="Script" id=3]
+[ext_resource path="res://Gamepad.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 3.0
@@ -116,8 +117,11 @@ scale = Vector2( 1.15, 0.8 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
+[node name="Gamepad" parent="." instance=ExtResource( 4 )]
+
 [connection signal="area_entered" from="." to="." method="_on_PigMouth_area_entered"]
 [connection signal="timeout" from="TimerEating" to="." method="_on_TimerEating_timeout"]
 [connection signal="timeout" from="TimerGoToGameOver" to="." method="_on_TimerGoToGameOver_timeout"]
 [connection signal="area_entered" from="PigBody" to="." method="_on_BodyArea_area_entered"]
 [connection signal="area_exited" from="PigBody" to="." method="_on_BodyArea_area_exited"]
+[connection signal="direction_changed" from="Gamepad" to="." method="_on_Gamepad_direction_changed"]
